@@ -8,10 +8,6 @@ The mu-scripts image serves as a minimal container which makes it easy to share 
 
 _Getting started with mu-scripts_
 
-## How-to guides
-
-_Specific guides how to apply this container_
-
 ### Embedded in your project
 
 Your project might have common project-specific scripts.  Copying a backup over to an external system or switching the default docker-compose file.  Scripts can be embedded in a project.  You can use this image with minimal overhead to write scripts embedded in your mu-project.
@@ -86,6 +82,78 @@ Now we can trigger the script:
     mu script zerocomp restore-zero-backup
 
 You're done.  Versioned scripts in your projects.
+
+## How-to guides
+
+_Specific guides how to apply this container_
+
+### How to add a simple echo-text script to the project
+
+#### Adding the configuration for the script to the project
+
+The configuration for project scripts can be found in the ./scripts/project/config.json file. This configuration file describes scripts that are located in the ./scripts/project folder. In order to add a script description open this config.json file. You will see a hash. The scripts entry is an array. You can add a hash here with the script information. A blueprint for this hash is:
+```
+        {
+          "documentation": {
+            "command": // The command that will trigger the script
+            "description": // A concise description of the script
+            "arguments": // An array describing the arguments
+          },
+          "environment": {
+            "image": // the image in which the script will be executed
+            "interactive": // set this to true if the script needs user interaction
+            "script": // the name of the script
+          },
+          "mounts": {
+            "app": // the location of the app
+          }
+        }
+```
+
+For our echo-text script we add the following block:
+
+```
+        {
+          "documentation": {
+            "command": "echo",
+            "description": "A script that echo's some text",
+            "arguments": []
+          },
+          "environment": {
+            "image": "ubuntu",
+            "interactive": false,
+            "script": "echo-script/echo-text.sh"
+          },
+          "mounts": {
+            "app": "/data/app/"
+          }
+        }
+```
+
+#### Adding the actual script to the project
+The echo-text script could look like this; echo-name.sh:
+```
+#!/bin/bash
+
+echo "hello world"
+```
+Create a folder named echo-script in the ./scripts/project folder.
+
+Save this text in a file name echo-name.sh in the ./scripts/project/echo-script folder. Then change the permissions for that file with
+```
+chmod +x ./scripts/project/echo-script/echo-script.sh
+```
+
+#### Testing the script
+```
+mu script project-scripts echo
+```
+
+And you should see the following output
+```
+
+```
+
 
 ## Reasoning
 
