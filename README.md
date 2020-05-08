@@ -1,11 +1,10 @@
 # mu-scripts
 
-This image serves as a basis for mu-cli script. See http://github.com/mu-semtech/mu-cli for more information.
+This image serves as a support service for mu-cli.  The best introduction to mu-scripts is to [http://github.com/mu-semtech/mu-cli/#getting-started](get started with mu-cli).
 
 The mu-scripts image serves as a minimal container which makes it easy to share scripts with mu-cli.  Some functionality is offered to help write versioned scripts.
 
 ## Getting started
-
 _Getting started with mu-scripts_
 
 ### Embedded in your project
@@ -152,7 +151,7 @@ mu script project-scripts echo
 
 And you should see the following output
 ```
-
+hello world
 ```
 
 
