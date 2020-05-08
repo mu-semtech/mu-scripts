@@ -1,6 +1,6 @@
 # mu-scripts
 
-This image serves as a support service for mu-cli.  The best introduction to mu-scripts is to [http://github.com/mu-semtech/mu-cli/#getting-started](get started with mu-cli).
+This image serves as a support service for mu-cli.  The best introduction to mu-scripts is to [get started with mu-cli](http://github.com/mu-semtech/mu-cli/#getting-started).
 
 The mu-scripts image serves as a minimal container which makes it easy to share scripts with mu-cli.  Some functionality is offered to help write versioned scripts.
 
