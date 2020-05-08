@@ -24,7 +24,7 @@ As such, the docker-compose.yml service description becomes:
       image: semtech/mu-scripts:1.0.0
       volumes:
         - ./scripts/project:/app/scripts/
-      restart: never
+      restart: "no"
 
 You can now add your `config.json` and your scripts into this folder.  More info at https://github.com/mu-semtech/mu-cli
 
@@ -33,11 +33,11 @@ You can now add your `config.json` and your scripts into this folder.  More info
 
 Some scripts can be reused across projects, but don't belong to a single service.  You could have a backup restore facility which ties in to your local infrastructure.  The backup restore script may work for multiple projects, but only within your organization.  In such case it can make sense to provide these scripts as a versioned container.
 
-In order to create the new image we create a folder and add a `Dockerfile` to that.  The contents of this file should look like:
+In order to create the new image we create a folder named `zerocomp` and add a `Dockerfile` to that.  The contents of this file should look like:
 
     FROM semtech/mu-scripts:1.0.0
 
-Once we have this in place, we can start adding scripts.  The `config.json` lives in the root of the project.  We expect to have one script in there for this example.
+Once we have this in place, we can start adding scripts.  The `config.json` lives in the root of the service/image.  We expect to have one script in there for this example. This script should be named `run.sh` and be placed in to the `zero-backup` folder inside the service folder (`zerocomp`).
 
 With one script, our `config.json` could look like:
 
@@ -69,17 +69,18 @@ Next up, we can add the script in `./zero-backup/run.sh`.
 
 You can now make an automated or local build and add it to your project.
 
-    docker build . -t "zerocomp/backup-scripts
+    cd zerocomp
+    docker build . -t zerocomp/backup-scripts
 
 And add it as a service:
 
     backup-scripts:
       image: zerocomp/backup-scripts
-      restart: never
+      restart: "no"
 
 Now we can trigger the script:
 
-    mu script zerocomp restore-zero-backup
+    mu script backup-scripts restore-zero-backup
 
 You're done.  Versioned scripts in your projects.
 
