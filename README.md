@@ -8,6 +8,8 @@ The mu-scripts image serves as a minimal container which makes it easy to share 
 
 _Getting started with mu-scripts_
 
+This image serves as a support service for mu-cli.  The best introduction to mu-scripts is to [http://github.com/mu-semtech/mu-cli/#getting-started](get started with mu-cli).
+
 ## How-to guides
 
 _Specific guides how to apply this container_
