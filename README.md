@@ -1,11 +1,11 @@
-# mu-scripts
+# simple-script-store
 
-This image serves as a support service for mu-cli.  The best introduction to mu-scripts is to [get started with mu-cli](http://github.com/mu-semtech/mu-cli/#getting-started).
+This image serves as a support service for mu-cli.  The best introduction to simple-script-store is to [get started with mu-cli](http://github.com/mu-semtech/mu-cli/#getting-started).
 
-The mu-scripts image serves as a minimal container which makes it easy to share scripts with mu-cli.  Some functionality is offered to help write versioned scripts.
+The simple-script-store image serves as a minimal container which makes it easy to share scripts with mu-cli.  Some functionality is offered to help write versioned scripts.
 
 ## Getting started
-_Getting started with mu-scripts_
+_Getting started with simple-script-store_
 
 ### Embedded in your project
 
@@ -20,7 +20,7 @@ The sensible default name for a service containing project-specific scripts is `
 As such, the docker-compose.yml service description becomes:
 
     project-scripts:
-      image: semtech/mu-scripts:1.0.0
+      image: semtech/simple-script-store:1.0.0
       volumes:
         - ./scripts/project:/app/scripts/
       restart: "no"
@@ -34,7 +34,7 @@ Some scripts can be reused across projects, but don't belong to a single service
 
 In order to create the new image we create a folder named `zerocomp` and add a `Dockerfile` to that.  The contents of this file should look like:
 
-    FROM semtech/mu-scripts:1.0.0
+    FROM semtech/simple-script-store:1.0.0
 
 Once we have this in place, we can start adding scripts.  The `config.json` lives in the root of the service/image.  We expect to have one script in there for this example. This script should be named `run.sh` and be placed in to the `zero-backup` folder inside the service folder (`zerocomp`).
 
